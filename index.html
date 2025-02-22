@@ -80,34 +80,34 @@
     <script type="text/babel">
         function MessageBox() {
             const messages = {
-                happy: ["Happiness is contagious!", "Smile, it makes you look amazing!", "You're loved!", "Enjoy this beautiful moment!"],
-                sad: ["You're stronger than you think.", "It's okay to not be okay.", "This too shall pass.", "I'm always here for you."],
-                motivation: ["Keep pushing forward!", "You are unstoppable!", "Dream big and make it happen!", "Your hard work will pay off!"]
+                Happy: ["Smile, it makes you look amazing!", "You're loved!", "Enjoy this beautiful moment!", "Happiness is contagious!"],
+                Sad: ["You're stronger than you think.", "It's okay to not be okay.", "This too shall pass.", "I'm always here for you."],
+                Motivated: ["Keep pushing forward!", "You are unstoppable!", "Dream big and make it happen!", "Your hard work will pay off!"]
             };
 
-            const [message, setMessage] = React.useState(null);
+            const [selectedMessage, setSelectedMessage] = React.useState(null);
 
-            const getRandomMessage = (category) => {
-                const msgs = messages[category];
-                setMessage(msgs[Math.floor(Math.random() * msgs.length)]);
+            const showMessage = (category) => {
+                const randomMsg = messages[category][Math.floor(Math.random() * messages[category].length)];
+                setSelectedMessage(randomMsg);
             };
 
             return (
                 <div>
-                    {message === null ? (
+                    {!selectedMessage ? (
                         <>
                             <h2>How are you feeling?</h2>
                             <div className="button-container">
                                 {Object.keys(messages).map((category) => (
-                                    <button key={category} onClick={() => getRandomMessage(category)}>
-                                        {category.toUpperCase()}
+                                    <button key={category} onClick={() => showMessage(category)}>
+                                        {category}
                                     </button>
                                 ))}
                             </div>
                         </>
                     ) : (
                         <>
-                            <div className="message-box">{message}</div>
+                            <div className="message-box">{selectedMessage}</div>
                             <p className="reload-text">Refresh the page for a new message</p>
                         </>
                     )}
