@@ -1,0 +1,15 @@
+{
+  "name": "message-box",
+  "version": "1.0.0",
+  "description": "A message box app",
+  "main": "index.js",
+  "homepage": "https://yourusername.github.io/message-box",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
