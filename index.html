@@ -8,37 +8,33 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
             background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
         .container {
-            width: 90%;
             max-width: 400px;
             padding: 20px;
             background: white;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            text-align: center;
         }
         h2 {
             font-size: 22px;
-            margin-bottom: 15px;
         }
         .button-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
+            margin: 20px 0;
         }
         button {
             flex: 1 1 40%;
@@ -80,21 +76,23 @@
     <script type="text/babel">
         function MessageBox() {
             const messages = {
-                Happy: ["Smile, it makes you look amazing!", "You're loved!", "Enjoy this beautiful moment!", "Happiness is contagious!"],
-                Sad: ["You're stronger than you think.", "It's okay to not be okay.", "This too shall pass.", "I'm always here for you."],
-                Motivated: ["Keep pushing forward!", "You are unstoppable!", "Dream big and make it happen!", "Your hard work will pay off!"]
+                Happy: ["Enjoy the little moments!", "Happiness is a choice.", "Smile, it suits you!", "Today is a great day!"],
+                Sad: ["It's okay to feel sad.", "You are not alone.", "Better days are coming.", "I'm here for you."],
+                Motivated: ["You can do it!", "Keep pushing!", "Believe in yourself!", "Never give up!"]
             };
 
             const [selectedMessage, setSelectedMessage] = React.useState(null);
+            const [showButtons, setShowButtons] = React.useState(true);
 
             const showMessage = (category) => {
                 const randomMsg = messages[category][Math.floor(Math.random() * messages[category].length)];
                 setSelectedMessage(randomMsg);
+                setShowButtons(false); // Hide buttons after selection
             };
 
             return (
                 <div>
-                    {!selectedMessage ? (
+                    {showButtons ? (
                         <>
                             <h2>How are you feeling?</h2>
                             <div className="button-container">
