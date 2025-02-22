@@ -92,4 +92,5 @@ const MessageBox = () => {
 };
 
 export default MessageBox;
+ReactDOM.render(<MessageBox />, document.getElementById("root"));
 
