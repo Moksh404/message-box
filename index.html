@@ -58,12 +58,15 @@
             font-size: 18px;
             font-weight: bold;
         }
+        .reload-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: gray;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Pick a Category</h2>
-        <div class="button-container"></div>
         <div id="root"></div>
     </div>
 
@@ -76,22 +79,33 @@
             };
 
             const [message, setMessage] = React.useState("");
+            const [categoryChosen, setCategoryChosen] = React.useState(false);
 
             const getRandomMessage = (category) => {
                 const msgs = messages[category];
                 setMessage(msgs[Math.floor(Math.random() * msgs.length)]);
+                setCategoryChosen(true);
             };
 
             return (
                 <div>
-                    <div className="button-container">
-                        {Object.keys(messages).map((category) => (
-                            <button key={category} onClick={() => getRandomMessage(category)}>
-                                {category.toUpperCase()}
-                            </button>
-                        ))}
-                    </div>
-                    {message && <div className="message-box">{message}</div>}
+                    {!categoryChosen ? (
+                        <>
+                            <h2>How are you feeling?</h2>
+                            <div className="button-container">
+                                {Object.keys(messages).map((category) => (
+                                    <button key={category} onClick={() => getRandomMessage(category)}>
+                                        {category.toUpperCase()}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="message-box">{message}</div>
+                            <p className="reload-text">Refresh the page for a new message</p>
+                        </>
+                    )}
                 </div>
             );
         }
